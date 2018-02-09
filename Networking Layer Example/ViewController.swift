@@ -9,17 +9,25 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    let client = MoviewClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+    
+        view.backgroundColor = .white
+    
+        client.getFeed(from: .topRated) { (result: Result) in
+            switch result {
+            case .Success(let movieFeedResult):
+                guard let movieResult = movieFeedResult?.results else { return }
+                movieResult.forEach { print($0) }
+            case .Failure(let error):
+                print("The Error: \(error.localizedDescription)")
+            }
+        }
+    
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
