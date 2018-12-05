@@ -19,7 +19,7 @@ enum APIError: Error {
     var localizedDescription: String {
         switch self {
         case .requestFailed:
-            return "Request Failedr"
+            return "Request Failed"
         case .jsonConversionFailure:
             return "JSON Conversion Failure"
         case .invalidData:
